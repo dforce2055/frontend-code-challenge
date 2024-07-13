@@ -21,7 +21,7 @@ export default {
 
       fontFamily: {
         'sans': ['"Quicksand"', "sans-serif"],
-        'body': ['"Quicksand"', "sans-serif"],
+        'body': ['"Quicksand"', "sans-serif"]
       },
     },
   },
