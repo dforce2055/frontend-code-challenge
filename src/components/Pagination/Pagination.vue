@@ -28,34 +28,36 @@ const texts = computed(() => ({
 }))
 
 
+const SET_LENGTH = 7
+const DIFF_SLIDER = 17
+
 const limitLeft = ref(1)
 const currentPage = ref(props.currentPage)
 // const pages = computed(() => Math.ceil(props.total / props.itemsPerPage))
-const setLength = 7
-const diffSlider = 17
+
 
 const currentSet = computed(() => {
-  return Array.from({ length: setLength }, (_, i) => i + limitLeft.value)
+  return Array.from({ length: SET_LENGTH }, (_, i) => i + limitLeft.value)
 })
 
 const limitRight = computed(() => {
   const diff = props.total - currentPage.value
 
   if (diff === 0) return props.total
-  if (diff > diffSlider) return currentSet.value[currentSet.value.length - 1] + diffSlider
+  if (diff > DIFF_SLIDER) return currentSet.value[currentSet.value.length - 1] + DIFF_SLIDER
   if (currentSet.value[currentSet.value.length - 1] + diff > props.total) return props.total
   else return currentSet.value[currentSet.value.length - 1] + diff
 })
 
 const showDots = computed(() => {
-  return (props.total - currentPage.value) > setLength
+  return (props.total - currentPage.value) > SET_LENGTH
 })
 
 const onPrev = () => {
   if (limitLeft.value > 1) {
     limitLeft.value--
-    if (currentPage.value > limitLeft.value + setLength - 1) {
-      currentPage.value--
+    if (currentPage.value > limitLeft.value + SET_LENGTH - 1) {
+      currentPage.value -= SET_LENGTH - 1
     }
     onSelectPage(currentPage.value)
     emit('prev', currentPage.value)
@@ -84,12 +86,12 @@ const onSelectPage = (page: number) => {
 }
 
 const onSelectLastItem = () => {
-  if (currentPage.value <= (props.total - diffSlider)) {
+  if (currentPage.value <= (props.total - DIFF_SLIDER)) {
     currentPage.value = limitRight.value
     limitLeft.value = currentPage.value
   } else if (limitRight.value === props.total) {
     currentPage.value = limitRight.value
-    limitLeft.value = currentPage.value - setLength
+    limitLeft.value = currentPage.value - SET_LENGTH
   }
   onSelectPage(currentPage.value)
 }
@@ -98,12 +100,12 @@ const onSelectLastItem = () => {
 const onGoToPage = (page: number) => {
   if (page >= props.total) {
     currentPage.value = props.total
-    limitLeft.value = props.total - setLength
+    limitLeft.value = props.total - SET_LENGTH
   }
 
-  if (page < props.total - setLength) {
+  if (page < props.total - SET_LENGTH && page > 0) {
     currentPage.value = page
-    limitLeft.value = page - setLength + 1
+    limitLeft.value = page
   }
 }
 
