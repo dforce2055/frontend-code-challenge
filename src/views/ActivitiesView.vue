@@ -25,7 +25,6 @@ const onGetActivities = async (page: number, limit: number) => {
   try {
     loading.value = true
     activities.value = await getActivities({ page, limit })
-
   } catch (error: any) {
     console.error('Error:', error)
     notificationStore.setErrorNotification()
@@ -45,7 +44,6 @@ const onChangeCurrentPage = (page: number) => {
 const onClickActivity = (activity: ActivityWithDetails) => {
   router.push({ name: 'activity-details', params: { id: activity.id } })
 }
-
 
 watch(queryPage, (page) => {
   onChangeCurrentPage(page)
@@ -67,7 +65,11 @@ onMounted(() => {
     <section v-else>
       <ActivityList :activities="activities" @click="onClickActivity" />
     </section>
-    <Pagination :class="[loading ? 'absolute bottom-6 left-0 right-0' : '']" :total="total" :current-page="currentPage"
-      @select="onChangeCurrentPage" />
+    <Pagination
+      :class="[loading ? 'absolute bottom-6 left-0 right-0' : '']"
+      :total="total"
+      :current-page="currentPage"
+      @select="onChangeCurrentPage"
+    />
   </section>
 </template>
