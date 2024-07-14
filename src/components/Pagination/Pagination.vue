@@ -2,7 +2,7 @@
 import {
   ref, defineProps, computed, defineEmits, watch
 } from 'vue'
-
+import { i18n } from '../../lang'
 const props = defineProps({
   itemsPerPage: {
     type: Number,
@@ -21,19 +21,11 @@ const props = defineProps({
   },
 })
 
-
 const emit = defineEmits<{
   (e: 'next', page: number): void
   (e: 'prev', page: number): void
   (e: 'select', page: number): void
 }>()
-
-
-const texts = computed(() => ({
-  of: 'de',
-  results: 'resultados',
-}))
-
 
 const SET_LENGTH = 7
 const DIFF_SLIDER = 17
@@ -124,18 +116,18 @@ watch(() => props.currentPage, (value) => {
 <template>
   <div class="flex flex-col items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
     <div class="flex flex-1 gap-10 justify-between sm:hidden">
-      <a href="#"
-        class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        @click="onPrev">Previous</a>
-      <a href="#"
-        class="relative  inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        @click="onNext">Next</a>
+      <span
+        class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 capitalize"
+        @click="onPrev">{{ i18n.es.previous }}</span>
+      <span
+        class="relative  inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 capitalize"
+        @click="onNext">{{ i18n.es.next }}</span>
     </div>
     <div class="flex flex-col">
       <div class="hidden w-full sm:flex sm:flex-1 sm:items-center sm:justify-center lg:flex-col">
         <div class="">
           <nav class="isolate inline-flex gap-2 rounded-md items-center justify-center" aria-label="Pagination">
-            <a href="#"
+            <span
               class="relative inline-flex items-center w-10 h-10 px-2 py-2 text-white text-lg focus:z-20 focus:outline-offset-0 rounded-full bg-primary hover:bg-primary-hover transition-colors duration-150 mr-5"
               @click="onPrev">
               <span class="sr-only">Previous</span>
@@ -146,26 +138,26 @@ watch(() => props.currentPage, (value) => {
                     d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
                 </svg>
               </span>
-            </a>
+            </span>
 
-            <a v-for="(item, index) in currentSet" :key="index" href="#"
+            <span v-for="(item, index) in currentSet" :key="index" href="#"
               :aria-current="item === currentPage ? 'page' : undefined" :class="['relative z-10 inline-flex items-center justify-center rounded-full min-w-10 h-10 text-lg font-normal p-2 focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-150',
                 item === currentPage ? 'bg-primary hover:bg-primary-hover focus-visible:outline-primary text-white' : 'text-black hover:bg-gray-100 focus-visible:outline-gray'
               ]" @click="onSelectPage(item)">
               {{ item }}
-            </a>
+            </span>
 
             <transition name="fade">
               <span v-if="showDots"
                 class="relative inline-flex items-center px-4 py-2 text-lg font-normal text-gray-700 ring-gray-300 focus:outline-offset-0">...</span>
             </transition>
 
-            <a href="#"
+            <span
               :class="['relative inline-flex items-center justify-center rounded-full min-w-10 h-10 text-lg font-normal p-2 text-black ', limitRight === currentPage ? 'bg-primary hover:bg-primary-hover text-white' : 'text-black hover:bg-gray-100']"
               @click="onSelectLastItem">{{
-                limitRight }}</a>
+                limitRight }}</span>
 
-            <a href="#"
+            <span
               class="relative inline-flex items-center justify-center rounded-full w-9 h-9 px-2 py-2 text-white focus:z-20 focus:outline-offset-0 bg-primary hover:bg-primary-hover transition-colors duration-150 ml-5"
               @click="onNext">
               <span class="sr-only">Next</span>
@@ -176,7 +168,7 @@ watch(() => props.currentPage, (value) => {
                     d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
                 </svg>
               </span>
-            </a>
+            </span>
           </nav>
         </div>
       </div>
@@ -184,11 +176,11 @@ watch(() => props.currentPage, (value) => {
         <p class="text-base text-gray-400">
           <span class="font-normal">{{ limitLeft }}-{{ limitRight }}</span>
           {{ ' ' }}
-          {{ texts.of }}
+          {{ i18n.es.of }}
           {{ ' ' }}
           <span class="font-normal">{{ props.total }}</span>
           {{ ' ' }}
-          {{ texts.results }}
+          {{ i18n.es.results }}
         </p>
       </div>
 
