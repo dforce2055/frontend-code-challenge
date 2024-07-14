@@ -41,6 +41,10 @@ const onChangeCurrentPage = (page: number) => {
   currentPage.value = page
 }
 
+const onClickActivity = (activity: ActivityWithDetails) => {
+  router.push({ name: 'activity-details', params: { id: activity.id } })
+}
+
 
 watch(queryPage, (page) => {
   onChangeCurrentPage(page)
@@ -56,9 +60,10 @@ onMounted(() => {
 </script>
 <template>
   <section>
+    <!-- TODO: Define animation -->
     <section v-if="loading">Loading...</section>
     <section v-else>
-      <ActivityList :activities="activities" />
+      <ActivityList :activities="activities" @click="onClickActivity" />
     </section>
     <Pagination :class="[loading ? 'absolute bottom-6 left-0 right-0' : '']" :total="total" :current-page="currentPage"
       @select="onChangeCurrentPage" />
