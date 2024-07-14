@@ -117,10 +117,10 @@ watch(() => props.currentPage, (value) => {
   <div class="flex flex-col items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
     <div class="flex flex-1 gap-10 justify-between sm:hidden">
       <span
-        class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 capitalize"
+        class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 capitalize cursor-pointer"
         @click="onPrev">{{ i18n.es.previous }}</span>
       <span
-        class="relative  inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 capitalize"
+        class="relative  inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 capitalize cursor-pointer"
         @click="onNext">{{ i18n.es.next }}</span>
     </div>
     <div class="flex flex-col">
@@ -128,7 +128,7 @@ watch(() => props.currentPage, (value) => {
         <div class="">
           <nav class="isolate inline-flex gap-2 rounded-md items-center justify-center" aria-label="Pagination">
             <span
-              class="relative inline-flex items-center w-10 h-10 px-2 py-2 text-white text-lg focus:z-20 focus:outline-offset-0 rounded-full bg-primary hover:bg-primary-hover transition-colors duration-150 mr-5"
+              class="relative inline-flex items-center w-10 h-10 px-2 py-2 text-white text-lg focus:z-20 focus:outline-offset-0 rounded-full bg-primary hover:bg-primary-hover transition-colors duration-150 mr-5 cursor-pointer"
               @click="onPrev">
               <span class="sr-only">Previous</span>
               <span class="h-4  w-4 ">
@@ -141,7 +141,7 @@ watch(() => props.currentPage, (value) => {
             </span>
 
             <span v-for="(item, index) in currentSet" :key="index" href="#"
-              :aria-current="item === currentPage ? 'page' : undefined" :class="['relative z-10 inline-flex items-center justify-center rounded-full min-w-10 h-10 text-lg font-normal p-2 focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-150',
+              :aria-current="item === currentPage ? 'page' : undefined" :class="['relative z-10 inline-flex items-center justify-center rounded-full min-w-10 h-10 text-lg font-normal p-2 focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-150 cursor-pointer',
                 item === currentPage ? 'bg-primary hover:bg-primary-hover focus-visible:outline-primary text-white' : 'text-black hover:bg-gray-100 focus-visible:outline-gray'
               ]" @click="onSelectPage(item)">
               {{ item }}
@@ -153,12 +153,12 @@ watch(() => props.currentPage, (value) => {
             </transition>
 
             <span
-              :class="['relative inline-flex items-center justify-center rounded-full min-w-10 h-10 text-lg font-normal p-2 text-black ', limitRight === currentPage ? 'bg-primary hover:bg-primary-hover text-white' : 'text-black hover:bg-gray-100']"
+              :class="['relative inline-flex items-center justify-center rounded-full min-w-10 h-10 text-lg font-normal p-2 text-black cursor-pointer', limitRight === currentPage ? 'bg-primary hover:bg-primary-hover text-white' : 'text-black hover:bg-gray-100']"
               @click="onSelectLastItem">{{
                 limitRight }}</span>
 
             <span
-              class="relative inline-flex items-center justify-center rounded-full w-9 h-9 px-2 py-2 text-white focus:z-20 focus:outline-offset-0 bg-primary hover:bg-primary-hover transition-colors duration-150 ml-5"
+              class="relative inline-flex items-center justify-center rounded-full w-9 h-9 px-2 py-2 text-white focus:z-20 focus:outline-offset-0 bg-primary hover:bg-primary-hover transition-colors duration-150 ml-5 cursor-pointer"
               @click="onNext">
               <span class="sr-only">Next</span>
               <span class="h-4 w-4">
