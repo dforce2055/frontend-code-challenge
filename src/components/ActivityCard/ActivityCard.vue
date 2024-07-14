@@ -44,7 +44,7 @@ onMounted(() => {
 })
 </script>
 <template>
-  <div v-if="props.activity" :key="props.activity.id"
+  <div v-if="props.activity" :key="props.activity.id" data-test="activity-card"
     :class="['group text-sm transition-opacity duration-150', loading ? 'animate-pulse hover:cursor-progress' : 'hover:cursor-pointer']"
     @click="onClickCard">
     <div
