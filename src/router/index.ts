@@ -19,7 +19,7 @@ const router = createRouter({
     },
     {
       path: '/actividades/:id',
-      name: 'activity details',
+      name: 'activity-details',
       component: () => import('../views/ActivityDetails.vue'),
       props: true
     },
