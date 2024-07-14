@@ -22,6 +22,7 @@ const image = computed(() => {
   return image ?? ''
 })
 
+const id = computed(() => props.activity.id.toString())
 const addressFormatted = computed(() => {
   const location = props.activity.activity.locations.find((loc) => loc)
   return `${location?.address}, ${location?.province}`
@@ -33,11 +34,10 @@ const onClickCard = () => {
 }
 
 onMounted(() => {
-  const image = document.querySelector('img')
+  const image = document.getElementById(id.value) as HTMLImageElement | null
 
   if (image) {
     image.addEventListener('load', () => {
-      console.log('Image loaded', props.activity.title)
       loading.value = false
     })
   }
@@ -51,7 +51,7 @@ onMounted(() => {
       :class="['aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-100 transition-all duration-150 group-hover:opacity-75']">
 
       <div class="">
-        <img :src="image" :alt="props.activity.title"
+        <img :id="id" :src="image" :alt="props.activity.title"
           :class="['h-full w-full object-cover object-center transition duration-300', loading ? 'opacity-0' : 'opacity-100']" />
       </div>
     </div>
@@ -114,7 +114,6 @@ onMounted(() => {
             d="M11.5869 11.375C11.8658 11.5373 12.118 11.7455 12.3339 11.9917C12.4134 11.875 12.5088 11.7667 12.5882 11.65C12.4142 11.36 12.2231 11.0817 12.0161 10.8167C11.873 11.0083 11.7141 11.1833 11.5869 11.375Z"
             fill="#464646" />
         </svg>
-
       </span>
     </div>
     <div class="flex items-center justify-start gap-2 my-3">
@@ -132,7 +131,7 @@ onMounted(() => {
       <span class="font-normal text-sm text-gray-900 line-clamp-1">{{ addressFormatted }}</span>
     </div>
     <p class=" text-gray-500 line-clamp-2">{{ props.activity.activity.description }}</p>
-    <p class="mt-2 font-semibold text-lg text-gray-900">{{ props.activity.price }} {{ i18n.es.points }}
+    <p class="mt-2 font-semibold text-lg text-gray-900">{{ props.activity.points }} {{ i18n.es.points }}
     </p>
   </div>
 </template>
