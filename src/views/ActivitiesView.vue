@@ -3,6 +3,7 @@ import { computed, onBeforeMount, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getActivities } from '../api'
 import { useNotificationsStore, useAppStore } from '../store'
+import { scrollTop } from '../utils'
 import type { ActivityWithDetails } from '../types'
 
 import Pagination from '../components/Pagination/Pagination.vue'
@@ -56,6 +57,7 @@ onBeforeMount(async () => {
 
 onMounted(() => {
   currentPage.value = queryPage.value
+  scrollTop()
 })
 </script>
 <template>
