@@ -1,19 +1,26 @@
 <script setup lang="ts">
 import {
-  ref, withDefaults, defineProps, computed, defineEmits, watch
+  ref, defineProps, computed, defineEmits, watch
 } from 'vue'
 
-export interface Props {
-  itemsPerPage?: number
-  total?: number
-  currentPage?: number
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  itemsPerPage: 9,
-  total: 10,
-  currentPage: 1
+const props = defineProps({
+  itemsPerPage: {
+    type: Number,
+    required: false,
+    default: 9
+  },
+  total: {
+    type: Number,
+    required: false,
+    default: 10
+  },
+  currentPage: {
+    type: Number,
+    required: false,
+    default: 1
+  },
 })
+
 
 const emit = defineEmits<{
   (e: 'next', page: number): void
