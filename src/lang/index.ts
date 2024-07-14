@@ -5,6 +5,14 @@ export const i18n = {
     points: 'puntos',
     search: 'buscar',
     next: 'siguiente',
-    previous: 'anterior'
+    previous: 'anterior',
+    activity: 'actividad',
+    activities: 'actividades',
+    question: 'pregunta',
+    people: 'personas',
+    person: 'persona',
+    'what-is-included': '¿Qué incluye?',
+    'other-similar-activities': 'Otras actividades similares',
+    rules: 'Reglas'
   }
 }
