@@ -38,4 +38,36 @@ export const getActivities = async ({
     throw new Error(error)
   }
 }
-export const getActivity = async (id: string) => {}
+
+export const getActivity = async (id: string) => {
+  try {
+    if (!id) throw new Error('No ID provided')
+
+    const response = await fetch(`${path}/${id}`)
+
+    const activity: Activity = await response.json()
+    const activityDecorator: ActivityWithDetails = {
+      ...activity,
+      activity: getActivitiesObject(activity.activity)
+    }
+
+    return activityDecorator
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+
+export const getRelatedActivitiesByCategory = async (category: string, limit = 10) => {
+  try {
+    if (!category) throw new Error('No category provided')
+
+    const randomPage = Math.floor(Math.random() * 10) + 1
+    const activities = await getActivities({ page: randomPage, limit: 50 })
+
+    const relatedActivity = activities.filter((activity) => activity.activity.category === category)
+
+    return relatedActivity.slice(0, limit)
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
