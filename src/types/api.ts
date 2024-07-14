@@ -24,7 +24,7 @@ export interface ActivityWithDetails extends Omit<Activity, 'activity'> {
 
 export interface ActivityDetails {
   category: string
-  rating: number
+  rating?: number | null
   subtitle: string
   description: string
   title: string
