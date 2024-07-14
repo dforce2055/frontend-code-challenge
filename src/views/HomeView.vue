@@ -16,6 +16,7 @@ import { RouterLink } from 'vue-router'
         </nav>
       </div>
     </header>
-    <h1 class="text-red-500 text-8xl mt-12">Frontend Code Challenge</h1>
+    <h1 class="text-red-500 text-3xl md:text-4xl lg:text-6xl mt-12 flex justify-center mx-auto">Frontend Code Challenge
+    </h1>
   </main>
 </template>

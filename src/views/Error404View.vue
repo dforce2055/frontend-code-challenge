@@ -12,14 +12,6 @@ const onGoBackHome = () => {
 }
 </script>
 <template>
-  <!--
-    This example requires updating your template:
-
-    ```
-    <html class="h-full">
-    <body class="h-full">
-    ```
-  -->
   <main class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
     <div class="text-center">
       <p class="text-base font-semibold text-primary">404</p>
