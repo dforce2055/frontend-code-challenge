@@ -22,6 +22,11 @@ const router = createRouter({
       name: 'activity details',
       component: () => import('../views/ActivityDetails.vue'),
       props: true
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: () => import('../views/Error404.vue')
     }
   ]
 })
